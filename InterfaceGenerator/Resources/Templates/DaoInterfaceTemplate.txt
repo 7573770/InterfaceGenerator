@@ -1,0 +1,14 @@
+//
+//  {CLASSNAME}.h
+//
+//  Created by __NAME__ on __DATE__
+//  Copyright (c) nd. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import <SmartCan/SmartCan.h>
+#import "{CLASSPREFIX}Config.h"
+
+@interface {CLASSNAME} : SMCRestDao
+
+@end

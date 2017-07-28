@@ -1,0 +1,22 @@
+
+
+/**
+{METHODANNOTATION}
+{PramANNOTATION}
+*/
+
+{METHODANDPRAM}{
+    NSMutableDictionary *dict=[[NSMutableDictionary alloc]init];
+    {ADDPRAM}
+    {METHODDAO} *dao=[[{METHODDAO} alloc]init];
+    [dao getAsynchronous:dict  class:nil success:^(id<MUPJSONSerializing> resource) {
+        {RESULT} result = [MTLJSONAdapter modelsOfClass:[{CLASSNAME} class] from{CLASSTYPE}:resource error:&error];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            success(result);
+        });
+    } failure:^(NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            failure(error);
+        });
+    }];
+}

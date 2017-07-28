@@ -1,0 +1,16 @@
+//
+//  {CLASSNAME}.m
+//
+//  Created by __NAME__ on __DATE__
+//  Copyright (c) nd. All rights reserved.
+//
+
+
+#import "{CLASSNAME}.h"
+
+
+@implementation {CLASSNAME}
+
+{METHOD_DECLARATION}
+
+@end

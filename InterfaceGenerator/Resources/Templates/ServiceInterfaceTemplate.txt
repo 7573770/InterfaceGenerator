@@ -1,0 +1,18 @@
+//
+//  {CLASSNAME}.h
+//
+//  Created by __NAME__ on __DATE__
+//  Copyright (c) nd. All rights reserved.
+//
+
+
+#import <Foundation/Foundation.h>
+#import "{CLASSPREFIX}Config.h"
+
+{FORWARD_DECLARATION}
+
+@interface {CLASSNAME} : NSObject
+
+{METHOD_DECLARATION}
+
+@end

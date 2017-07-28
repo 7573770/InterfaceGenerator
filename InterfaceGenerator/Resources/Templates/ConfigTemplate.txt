@@ -1,0 +1,9 @@
+
+#ifndef {CLASSPREFIX}Config_h
+#define {CLASSPREFIX}Config_h
+
+//#define  {CLASSPREFIX}BaseUrl  [HWCUrlUtils getHeadUrl]
+#define    {CLASSPREFIX}BaseUrl @"http://rapapi.org/mockjsdata/21739/"
+#define    {CLASSPREFIX}ISMOCK YES
+
+#endif /* {CLASSPREFIX}Config_h */

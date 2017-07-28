@@ -1,0 +1,22 @@
+//
+//  {CLASSNAME}.m
+//
+//  Created by __NAME__ on __DATE__
+//  Copyright (c) nd. All rights reserved.
+//
+
+
+#import "{CLASSNAME}.h"
+
+@implementation {CLASSNAME}
+
+- (NSString *)resourceURI {
+    //如果ismock为YES 使用MOCK数据 如果要返回真实数据 请将ismock 设为NO baseurl改为你自己的host地址
+    if({CLASSPREFIX}ISMOCK){
+        return {mockURI};
+    }
+   return {resourceURI};
+}
+
+
+@end

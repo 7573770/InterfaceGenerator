@@ -1,0 +1,17 @@
+//
+//  {CLASSNAME}.h
+//
+//  Created by __NAME__ on __DATE__
+//  Copyright (c) nd. All rights reserved.
+//
+
+
+#import <Foundation/Foundation.h>
+
+{FORWARD_DECLARATION}
+
+@interface {CLASSNAME} : MTLModel<MTLJSONSerializing>
+
+{PROPERTIES}
+
+@end

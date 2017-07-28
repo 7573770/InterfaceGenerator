@@ -1,0 +1,5 @@
+
+
++ (NSValueTransformer *){PROPERTIES}JSONTransformer{
+    return [MTLJSONAdapter arrayTransformerWithModelClass:[{CLASSNAME} class]];
+}
