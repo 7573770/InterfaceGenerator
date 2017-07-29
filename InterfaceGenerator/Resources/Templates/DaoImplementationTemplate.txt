@@ -11,7 +11,7 @@
 @implementation {CLASSNAME}
 
 - (NSString *)resourceURI {
-    //如果ismock为YES 使用MOCK数据 如果要返回真实数据 请将ismock 设为NO baseurl改为你自己的host地址
+    //如果ISMOCK为YES 使用MOCK数据 如果要返回真实数据 请将Config.h文件中 ISMOCK 设为NO BaseUrl改为你自己的host地址
     if({CLASSPREFIX}ISMOCK){
         return {mockURI};
     }

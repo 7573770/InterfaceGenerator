@@ -10,6 +10,7 @@
     {ADDPRAM}
     {METHODDAO} *dao=[[{METHODDAO} alloc]init];
     [dao deleteAsynchronous:dict  class:nil success:^(id<MUPJSONSerializing> resource) {
+         NSError *error;
         {RESULT} result = [MTLJSONAdapter modelsOfClass:[{CLASSNAME} class] from{CLASSTYPE}:resource error:&error];
         dispatch_async(dispatch_get_main_queue(), ^{
             success(result);

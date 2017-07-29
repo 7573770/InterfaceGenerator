@@ -73,8 +73,8 @@
                     if (resourceURI.length>1&&[[resourceURI substringWithRange:NSMakeRange(0, 1)]isEqualToString:@"/"]) {
                         resourceURI=[resourceURI substringFromIndex:1];
                     }
-                    resourceURI=[NSString stringWithFormat:@"@\"${%@BaseUrl}%@\"",classPrefix,resourceURI];
                 }
+                resourceURI=[NSString stringWithFormat:@"@\"${BaseUrl}%@\"",resourceURI];
                 
                 NSString *lastPathComponent=[self capitalizedString:requestUrl.lastPathComponent];
                 lastPathComponent=[self captureString:lastPathComponent start:@"${" end:@"}"];
@@ -197,7 +197,7 @@
                     NSString *methodName=@"";
                     NSMutableArray<ParameterClass *> *requestParameterList=actionClass.requestParameterList;
                     if (requestParameterList.count==0) {
-                        methodString=@"-(void){METHODNAME}:(void (^)({RESULT})success failure:(void (^)(NSError *))failure;\n\n";
+                        methodString=@"-(void){METHODNAME}:(void (^)({RESULT}))success failure:(void (^)(NSError *))failure;\n\n";
                     }else{
                         for (int i=0;i<requestParameterList.count;i++) {
                             
@@ -244,7 +244,7 @@
                                 methodString=[methodString stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@":%@",identifier] withString:@""];
                             }
                         }
-                        methodString=[methodString stringByAppendingString:@"success:(void (^)({RESULT})success failure:(void (^)(NSError *))failure;\n\n"];
+                        methodString=[methodString stringByAppendingString:@"success:(void (^)({RESULT}))success failure:(void (^)(NSError *))failure;\n\n"];
                     }
                     
                     NSString *_description=actionClass._description;
@@ -293,7 +293,9 @@
                     methodTemplate=[methodTemplate stringByReplacingOccurrencesOfString:@"{RESULT}" withString:result];
                     methodTemplate=[methodTemplate stringByReplacingOccurrencesOfString:@"{CLASSNAME}" withString:className];
                      methodTemplate=[methodTemplate stringByReplacingOccurrencesOfString:@"{CLASSTYPE}" withString:classType];
-                    
+                    if ([classType isEqualToString:@"JSONObject"]) {
+                        methodTemplate=[methodTemplate stringByReplacingOccurrencesOfString:@"modelsOfClass" withString:@"modelOfClass"];
+                    }
                     methodImplementation=[methodImplementation stringByAppendingString:methodTemplate];
 
                 }
@@ -355,7 +357,7 @@
                 if (![modelName hasPrefix:classPrefix]) {
                     modelName=[classPrefix stringByAppendingString:modelName];
                 }
-                NSString *import=[NSString stringWithFormat:@"#import  @\%@.h\"\n",modelName];
+                NSString *import=[NSString stringWithFormat:@"#import \"%@.h\"\n",modelName];
                 importString=[importString stringByAppendingString:import];
                 NSString *property=[NSString stringWithFormat:@"@property(nonatomic,strong)NSArray<%@*> *%@;\n",modelName,[identifier componentsSeparatedByString:@"|"][0]];
                 propertyString= [propertyString stringByAppendingString:property];
@@ -375,8 +377,13 @@
                propertyString= [propertyString stringByAppendingString:property];
             }
         }else if([dataType isEqualToString:@"boolean"]){//bool类型
-            NSString *property=[NSString stringWithFormat:@"@property(nonatomic,assign)BOOL %@;\n",identifier];
-           propertyString= [propertyString stringByAppendingString:property];
+            if([identifier isEqualToString:@"default"]){
+                NSString *property=[NSString stringWithFormat:@"@property(nonatomic,assign)BOOL %@;\n",@"_default"];
+                propertyString= [propertyString stringByAppendingString:property];
+            }else{
+                NSString *property=[NSString stringWithFormat:@"@property(nonatomic,assign)BOOL %@;\n",identifier];
+                propertyString= [propertyString stringByAppendingString:property];
+            }
         }else if([dataType isEqualToString:@"number"]){//整形
             NSString *property=[NSString stringWithFormat:@"@property(nonatomic,strong)NSNumber *%@;\n",identifier];
             propertyString=[propertyString stringByAppendingString:property];

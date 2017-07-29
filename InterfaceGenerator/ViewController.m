@@ -28,6 +28,7 @@
     [panel beginWithCompletionHandler:^(NSInteger result) {
         if(result == NSModalResponseOK){
             NSString *pathString = [panel.URLs.firstObject path];
+//            NSString *pathString = @"/Users/linshuicai/Documents/rap";
             pathString=[pathString stringByAppendingString:@"/"];
             RAPModelDao *modelDao=[[RAPModelDao alloc]init];
             [modelDao queryRAPModel:project.stringValue success:^(NSArray<ModuleClass *> *moduleList) {
@@ -35,7 +36,10 @@
                     [GeneratorClassService generatorModel:moduleList classPrefix:classPrefix.stringValue baseUrl:pathString author:author.stringValue];//生成数据模型
                     [GeneratorClassService generatorDaoService:moduleList classPrefix:classPrefix.stringValue baseUrl:pathString author:author.stringValue];//生成业务接口调用层
             } failure:^(NSError *error) {
-                    
+                NSAlert *alert = [NSAlert alertWithMessageText:@"提示" defaultButton:@"确定" alternateButton:nil otherButton:nil informativeTextWithFormat:@"接口读取失败，请确认项目ID或者RAP服务是否正常"];
+                [alert runModal];
+                NSLog(@"失败");
+
             }];
         }
     }];

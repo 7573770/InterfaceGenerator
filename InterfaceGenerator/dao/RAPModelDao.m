@@ -105,6 +105,7 @@
         }
         NSLog(@"success");
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        failure(error);
         NSLog(@"失败");
     }];
     
