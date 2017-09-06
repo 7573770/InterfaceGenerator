@@ -36,12 +36,14 @@
     NSMutableDictionary *dict=[[NSMutableDictionary alloc]init];
     for (NSString *key in propertiesArray) {
         if (![key isEqualToString:@"debugDescription"]&&![key isEqualToString:@"description"]&&![key isEqualToString:@"hash"]&&![key isEqualToString:@"superclass"]) {
-        if([key isEqualToString:@"default"]){//系统预定变量
+        if([key isEqualToString:@"_default"]){//系统预定变量
             [dict setObject:@"default" forKey:@"_default"];
         }else{
             [dict setObject:key forKey:key];
         }
-
+        if([key isEqualToString:@"_description"]){//系统预定变量
+            [dict setObject:@"description" forKey:@"_description"];
+        }
     }
 
 }

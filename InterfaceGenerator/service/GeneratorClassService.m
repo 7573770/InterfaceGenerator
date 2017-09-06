@@ -388,8 +388,14 @@
             NSString *property=[NSString stringWithFormat:@"@property(nonatomic,strong)NSNumber *%@;\n",identifier];
             propertyString=[propertyString stringByAppendingString:property];
         }else{//字符串
-            NSString *property=[NSString stringWithFormat:@"@property(nonatomic,strong)NSString *%@;\n",identifier];
-           propertyString= [propertyString stringByAppendingString:property];
+            if([identifier isEqualToString:@"description"]){
+                NSString *property=[NSString stringWithFormat:@"@property(nonatomic,strong)NSString *%@;\n",@"_description"];
+                propertyString= [propertyString stringByAppendingString:property];
+            }else{
+                NSString *property=[NSString stringWithFormat:@"@property(nonatomic,strong)NSString *%@;\n",identifier];
+                propertyString= [propertyString stringByAppendingString:property];
+
+            }
         }
         
     }
