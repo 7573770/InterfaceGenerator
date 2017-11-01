@@ -60,22 +60,27 @@
                         baseMockURL=[baseMockURL stringByReplacingOccurrencesOfString:string withString:[self encoded:string]];
                     }
                 }
+                NSString *pramString=@"";
                 mockURL=[[mockURL stringByAppendingString:baseMockURL]stringByAppendingString:@"\""];
                 if ((requestType==1||requestType==4)&&requestParameterList.count>0) {//get 和 delete请求url后要加参数
-                    NSString *prams=@"?";
-                    for (int i=0;i<requestParameterList.count;i++) {
-                        ParameterClass *paramClass=requestParameterList[i];
-                        prams=[prams stringByAppendingString:[NSString stringWithFormat:@"%@=${%@}",paramClass.identifier,paramClass.identifier]];
-                        if (i!=requestParameterList.count-1) {
-                            prams=[prams stringByAppendingString:@"&"];
+//                    if([requestUrl isEqualToString:@"/v1/contents"]){
+                        NSString *prams=@"?";
+                        for (int i=0;i<requestParameterList.count;i++) {
+                            ParameterClass *paramClass=requestParameterList[i];
+                            prams=[prams stringByAppendingString:[NSString stringWithFormat:@"%@=${%@}",paramClass.identifier,paramClass.identifier]];
+                            if (i!=requestParameterList.count-1) {
+                                prams=[prams stringByAppendingString:@"&"];
+                            }
                         }
-                    }
-                    if (resourceURI.length>1&&[[resourceURI substringWithRange:NSMakeRange(0, 1)]isEqualToString:@"/"]) {
-                        resourceURI=[resourceURI substringFromIndex:1];
-                    }
+                    pramString=prams;
+//                    }
                 }
+                if (resourceURI.length>1&&[[resourceURI substringWithRange:NSMakeRange(0, 1)]isEqualToString:@"/"]) {
+                    resourceURI=[resourceURI substringFromIndex:1];
+                }
+                resourceURI=[resourceURI stringByAppendingString:pramString];
                 resourceURI=[NSString stringWithFormat:@"@\"${BaseUrl}%@\"",resourceURI];
-                
+//                resourceURI=[resourceURI stringByAppendingString:pramString];
                 NSString *lastPathComponent=[self capitalizedString:requestUrl.lastPathComponent];
                 lastPathComponent=[self captureString:lastPathComponent start:@"${" end:@"}"];
                 NSString *className=[NSString stringWithFormat:@"%@%@%@DAO",classPrefix,[self getRequestType:requestType],lastPathComponent];
