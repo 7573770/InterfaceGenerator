@@ -9,6 +9,8 @@
     NSMutableDictionary *dict=[[NSMutableDictionary alloc]init];
     {ADDPRAM}
     {METHODDAO} *dao=[[{METHODDAO} alloc]init];
+    NSString *gaeaAuthorization = [NSString stringWithFormat:@"GAEA id=\"%@\"", @"EQiKsIYA52A="];
+    [dao addHeader_key:@"X-Gaea-Authorization" value:gaeaAuthorization];
     [dao getAsynchronous:dict  class:nil success:^(id<MUPJSONSerializing> resource) {
         NSError *error;
         {RESULT} result = [MTLJSONAdapter modelsOfClass:[{CLASSNAME} class] from{CLASSTYPE}:resource error:&error];

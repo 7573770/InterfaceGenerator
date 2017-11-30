@@ -8,7 +8,8 @@
 #import <Foundation/Foundation.h>
 #import <SmartCan/SmartCan.h>
 #import "{CLASSPREFIX}Config.h"
+#import "{CLASSPREFIX}RestDao.h"
 
-@interface {CLASSNAME} : SMCRestDao
+@interface {CLASSNAME} : {CLASSPREFIX}RestDao
 
 @end
