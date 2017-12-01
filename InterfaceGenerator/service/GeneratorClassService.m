@@ -339,6 +339,9 @@
     for (ParameterClass *parameterClass in responseParameterList) {
         NSString *dataType=parameterClass.dataType;
         NSString *identifier=parameterClass.identifier;
+        if (parameterClass.name&&![[parameterClass.name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] isEqualToString:@""] ) {
+            propertyString= [propertyString stringByAppendingString:[NSString stringWithFormat:@"//%@\n",parameterClass.name]];
+        }
         if ([dataType isEqualToString:@"object"]) {//对象
             NSString *modelName=[self capitalizedString:identifier];
             modelName=[classPrefix stringByAppendingString:modelName];
@@ -351,12 +354,17 @@
             if (parameterClass.parameterList.count>0) {//数据为 array<object>
                 NSString *methodTemplate=[nsValueTransformerTemplate copy];
                 NSString *modelName=[identifier copy];
-                modelName=[modelName componentsSeparatedByString:@"|"][0];
-                if ([modelName isEqualToString:@"items"]) {
-                    modelName=[className stringByAppendingString:@"Item"];
-                }
-                if (modelName.length>1&&[[modelName substringFromIndex:modelName.length-1] isEqualToString:@"s"]) {
-                    modelName=[modelName substringToIndex:modelName.length-1];
+                //如果是数组 有标注 取标注作为类名 没有就取 数组别名当作类名
+                if (parameterClass.name&&![[parameterClass.name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] isEqualToString:@""] ) {
+                    modelName=[parameterClass.name copy];
+                }else{
+                    modelName=[modelName componentsSeparatedByString:@"|"][0];
+                    if ([modelName isEqualToString:@"items"]) {
+                        modelName=[className stringByAppendingString:@"Item"];
+                    }
+                    if (modelName.length>1&&[[modelName substringFromIndex:modelName.length-1] isEqualToString:@"s"]) {
+                        modelName=[modelName substringToIndex:modelName.length-1];
+                    }
                 }
                 modelName=[self capitalizedString:modelName];
                 if (![modelName hasPrefix:classPrefix]) {
