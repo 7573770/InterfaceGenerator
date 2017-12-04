@@ -49,7 +49,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [classPrefix setStringValue:@"RAP"];
+    [classPrefix setStringValue:@"HWC"];
     [project setStringValue:@"21739"];
     [author setStringValue:@"邵存将"];
 }
