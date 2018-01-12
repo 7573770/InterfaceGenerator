@@ -142,6 +142,11 @@
                 NSString *requestUrl=actionClass.requestUrl;
                 NSString *_description=actionClass._description;
                 NSString *description=[_description stringByReplacingOccurrencesOfString:@"@type=array_map;" withString:@""];
+                
+                if ([description containsString:@"@type=array_map"]) {
+                    NSRange range = [description rangeOfString:@"@type=array_map"];//匹配得到的下标
+                    description=[description substringToIndex:range.location-2] ;
+                }
                 NSString *lastName=@"";
                 if (![[description stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] isEqualToString:@""]) {
                     lastName=description;
@@ -209,6 +214,7 @@
                             ParameterClass *parameterClass=requestParameterList[i];
                             NSString *dataType=parameterClass.dataType;
                             NSString *identifier=parameterClass.identifier;
+                            
                             pramAnnotation=[pramAnnotation stringByAppendingString:[NSString stringWithFormat:@"@pram %@      %@\n",identifier,parameterClass.name]];
                             if ([dataType isEqualToString:@"object"]) {//对象
                                 methodString=[methodString stringByAppendingString:[NSString stringWithFormat:@"%@:(NSDictionary *)%@ ",identifier,identifier]];
@@ -339,6 +345,9 @@
     for (ParameterClass *parameterClass in responseParameterList) {
         NSString *dataType=parameterClass.dataType;
         NSString *identifier=parameterClass.identifier;
+        if ([identifier containsString:@"|"]) {
+            identifier=[identifier componentsSeparatedByString:@"|"][0];
+        }
         if (parameterClass.name&&![[parameterClass.name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] isEqualToString:@""] ) {
             propertyString= [propertyString stringByAppendingString:[NSString stringWithFormat:@"//%@\n",parameterClass.name]];
         }
