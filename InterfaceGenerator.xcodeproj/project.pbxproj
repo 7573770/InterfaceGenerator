@@ -7,7 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C907D8711F24819900BCB387 /* GeneratorClassService.m in Sources */ = {isa = PBXBuildFile; fileRef = C907D8701F24819900BCB387 /* GeneratorClassService.m */; };
+		76753D23231DE931003B968C /* IOSBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 76753D22231DE931003B968C /* IOSBuilder.m */; };
+		76753D26231DEBCD003B968C /* IntefaceBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 76753D25231DEBCD003B968C /* IntefaceBuilder.m */; };
+		76753D2A231DEE10003B968C /* IOSIntefaceDirector.m in Sources */ = {isa = PBXBuildFile; fileRef = 76753D29231DEE10003B968C /* IOSIntefaceDirector.m */; };
+		76DE04EE231D6E9700F067CB /* IOSRapFileResolver.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DE04ED231D6E9700F067CB /* IOSRapFileResolver.m */; };
+		C907D8711F24819900BCB387 /* IOSGeneratorClassService.m in Sources */ = {isa = PBXBuildFile; fileRef = C907D8701F24819900BCB387 /* IOSGeneratorClassService.m */; };
 		C907D8751F2484C400BCB387 /* ModuleClass.m in Sources */ = {isa = PBXBuildFile; fileRef = C907D8741F2484C400BCB387 /* ModuleClass.m */; };
 		C907D8781F24854300BCB387 /* PageClass.m in Sources */ = {isa = PBXBuildFile; fileRef = C907D8771F24854300BCB387 /* PageClass.m */; };
 		C907D87B1F24858900BCB387 /* ActionClass.m in Sources */ = {isa = PBXBuildFile; fileRef = C907D87A1F24858900BCB387 /* ActionClass.m */; };
@@ -70,8 +74,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		C907D86F1F24819900BCB387 /* GeneratorClassService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneratorClassService.h; sourceTree = "<group>"; };
-		C907D8701F24819900BCB387 /* GeneratorClassService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratorClassService.m; sourceTree = "<group>"; };
+		76753D1F231DE7E4003B968C /* FileResolverProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileResolverProtocol.h; sourceTree = "<group>"; };
+		76753D21231DE931003B968C /* IOSBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IOSBuilder.h; sourceTree = "<group>"; };
+		76753D22231DE931003B968C /* IOSBuilder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IOSBuilder.m; sourceTree = "<group>"; };
+		76753D24231DEBCD003B968C /* IntefaceBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntefaceBuilder.h; sourceTree = "<group>"; };
+		76753D25231DEBCD003B968C /* IntefaceBuilder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntefaceBuilder.m; sourceTree = "<group>"; };
+		76753D27231DED1F003B968C /* IntefaceDirector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntefaceDirector.h; sourceTree = "<group>"; };
+		76753D28231DEE10003B968C /* IOSIntefaceDirector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IOSIntefaceDirector.h; sourceTree = "<group>"; };
+		76753D29231DEE10003B968C /* IOSIntefaceDirector.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IOSIntefaceDirector.m; sourceTree = "<group>"; };
+		76DE04EC231D6E9700F067CB /* IOSRapFileResolver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IOSRapFileResolver.h; sourceTree = "<group>"; };
+		76DE04ED231D6E9700F067CB /* IOSRapFileResolver.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IOSRapFileResolver.m; sourceTree = "<group>"; };
+		C907D86F1F24819900BCB387 /* IOSGeneratorClassService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOSGeneratorClassService.h; sourceTree = "<group>"; };
+		C907D8701F24819900BCB387 /* IOSGeneratorClassService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IOSGeneratorClassService.m; sourceTree = "<group>"; };
 		C907D8731F2484C400BCB387 /* ModuleClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModuleClass.h; sourceTree = "<group>"; };
 		C907D8741F2484C400BCB387 /* ModuleClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModuleClass.m; sourceTree = "<group>"; };
 		C907D8761F24854300BCB387 /* PageClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageClass.h; sourceTree = "<group>"; };
@@ -176,8 +190,18 @@
 		C907D86E1F24814000BCB387 /* service */ = {
 			isa = PBXGroup;
 			children = (
-				C907D86F1F24819900BCB387 /* GeneratorClassService.h */,
-				C907D8701F24819900BCB387 /* GeneratorClassService.m */,
+				C907D86F1F24819900BCB387 /* IOSGeneratorClassService.h */,
+				C907D8701F24819900BCB387 /* IOSGeneratorClassService.m */,
+				76DE04EC231D6E9700F067CB /* IOSRapFileResolver.h */,
+				76DE04ED231D6E9700F067CB /* IOSRapFileResolver.m */,
+				76753D1F231DE7E4003B968C /* FileResolverProtocol.h */,
+				76753D27231DED1F003B968C /* IntefaceDirector.h */,
+				76753D21231DE931003B968C /* IOSBuilder.h */,
+				76753D22231DE931003B968C /* IOSBuilder.m */,
+				76753D24231DEBCD003B968C /* IntefaceBuilder.h */,
+				76753D25231DEBCD003B968C /* IntefaceBuilder.m */,
+				76753D28231DEE10003B968C /* IOSIntefaceDirector.h */,
+				76753D29231DEE10003B968C /* IOSIntefaceDirector.m */,
 			);
 			path = service;
 			sourceTree = "<group>";
@@ -518,12 +542,13 @@
 				C97865881F20609400C8FB93 /* AFURLResponseSerialization.m in Sources */,
 				C97865831F20609400C8FB93 /* RAPModelDao.m in Sources */,
 				C97865921F20609400C8FB93 /* UIProgressView+AFNetworking.m in Sources */,
+				76753D26231DEBCD003B968C /* IntefaceBuilder.m in Sources */,
 				C978658D1F20609400C8FB93 /* AFImageDownloader.m in Sources */,
 				C978658C1F20609400C8FB93 /* AFAutoPurgingImageCache.m in Sources */,
 				C97865311F20603D00C8FB93 /* ViewController.m in Sources */,
 				C907D8751F2484C400BCB387 /* ModuleClass.m in Sources */,
 				C907D87E1F24868700BCB387 /* ParameterClass.m in Sources */,
-				C907D8711F24819900BCB387 /* GeneratorClassService.m in Sources */,
+				C907D8711F24819900BCB387 /* IOSGeneratorClassService.m in Sources */,
 				C907D8781F24854300BCB387 /* PageClass.m in Sources */,
 				C97865901F20609400C8FB93 /* UIButton+AFNetworking.m in Sources */,
 				C907D87B1F24858900BCB387 /* ActionClass.m in Sources */,
@@ -533,9 +558,12 @@
 				C97865941F20609400C8FB93 /* UIWebView+AFNetworking.m in Sources */,
 				C97865891F20609400C8FB93 /* AFURLSessionManager.m in Sources */,
 				C978652E1F20603D00C8FB93 /* main.m in Sources */,
+				76753D2A231DEE10003B968C /* IOSIntefaceDirector.m in Sources */,
 				C97865851F20609400C8FB93 /* AFNetworkReachabilityManager.m in Sources */,
+				76DE04EE231D6E9700F067CB /* IOSRapFileResolver.m in Sources */,
 				C978652B1F20603D00C8FB93 /* AppDelegate.m in Sources */,
 				C978658B1F20609400C8FB93 /* README.md in Sources */,
+				76753D23231DE931003B968C /* IOSBuilder.m in Sources */,
 				C978658E1F20609400C8FB93 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				C97865871F20609400C8FB93 /* AFURLRequestSerialization.m in Sources */,
 			);

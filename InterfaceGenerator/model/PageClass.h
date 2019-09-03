@@ -13,7 +13,7 @@
 
 @property(nonatomic,assign)NSInteger id;
 @property(nonatomic,strong)NSString *introduction;
-@property(nonatomic,strong)NSString *name;
-@property(nonatomic,strong)NSMutableArray<ActionClass *>  *actionList;
+@property(nonatomic,strong)NSString *name;//页面名称
+@property(nonatomic,strong)NSMutableArray<ActionClass *>  *actionList;//当前页面对应的接口
 
 @end

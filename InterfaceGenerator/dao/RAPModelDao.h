@@ -14,7 +14,7 @@
 
 /**
  根据项目ID查询所有的接口和模块数据
-
+ 从rap服务器读取接口文档数据
  @param projectId 项目ID
  @param success   success 模块列表
  @param failure   failure description

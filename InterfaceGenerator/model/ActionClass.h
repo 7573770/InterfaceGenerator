@@ -13,11 +13,11 @@
 
 @property(nonatomic,assign)NSInteger id;
 @property(nonatomic,strong)NSString *_description;
-@property(nonatomic,strong)NSString *name;
-@property(nonatomic,assign)NSInteger requestType;
+@property(nonatomic,strong)NSString *name;//接口名称
+@property(nonatomic,assign)NSInteger requestType;//接口的请求类型
 @property(nonatomic,strong)NSString *responseTemplate;
-@property(nonatomic,strong)NSString *requestUrl;
-@property(nonatomic,strong)NSMutableArray<ParameterClass *> *requestParameterList;
-@property(nonatomic,strong)NSMutableArray<ParameterClass *> *responseParameterList;
+@property(nonatomic,strong)NSString *requestUrl;//接口的请求地址
+@property(nonatomic,strong)NSMutableArray<ParameterClass *> *requestParameterList;//请求参数
+@property(nonatomic,strong)NSMutableArray<ParameterClass *> *responseParameterList;//响应参数
 
 @end    

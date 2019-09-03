@@ -9,8 +9,8 @@
 #import "ViewController.h"
 #import "RAPModelDao.h"
 #import "ModuleClass.h"
-#import "GeneratorClassService.h"
-
+#import "IOSIntefaceDirector.h"
+#import "IOSBuilder.h"
 
 @implementation ViewController{
     
@@ -23,7 +23,7 @@
     [panel setCanChooseFiles:NO];
     [panel setCanCreateDirectories:YES];
     [panel setResolvesAliases:YES];
-    [panel setPrompt:NSLocalizedString(@"Choose", @"Label to have the user select which folder to choose")];
+    [panel setPrompt:NSLocalizedString(@"请选择", @"选择你要生成文件的路径")];
     panel.delegate=self;
     [panel beginWithCompletionHandler:^(NSInteger result) {
         if(result == NSModalResponseOK){
@@ -32,14 +32,17 @@
             pathString=[pathString stringByAppendingString:@"/"];
             RAPModelDao *modelDao=[[RAPModelDao alloc]init];
             [modelDao queryRAPModel:project.stringValue success:^(NSArray<ModuleClass *> *moduleList) {
-                    [GeneratorClassService generatorDao:moduleList classPrefix:classPrefix.stringValue baseUrl:pathString author:author.stringValue projectID:project.stringValue]; //生成dao接口
-                    [GeneratorClassService generatorModel:moduleList classPrefix:classPrefix.stringValue baseUrl:pathString author:author.stringValue];//生成数据模型
-                    [GeneratorClassService generatorDaoService:moduleList classPrefix:classPrefix.stringValue baseUrl:pathString author:author.stringValue];//生成业务接口调用层
+                IOSIntefaceDirector *director=[[IOSIntefaceDirector alloc]init];
+                director.builder=[[IOSBuilder alloc]init];
+                [director construct:moduleList classPrefix:classPrefix.stringValue baseUrl:pathString author:author.stringValue projectID:project.stringValue];
+                
+                NSString *message=[NSString stringWithFormat:@"已在 %@ 下生成接口文件,直接复制文件至工程即可使用",pathString];
+                NSAlert *alert = [NSAlert alertWithMessageText:@"提示" defaultButton:@"确定" alternateButton:nil otherButton:nil informativeTextWithFormat:message];
+                [alert runModal];
             } failure:^(NSError *error) {
                 NSAlert *alert = [NSAlert alertWithMessageText:@"提示" defaultButton:@"确定" alternateButton:nil otherButton:nil informativeTextWithFormat:@"接口读取失败，请确认项目ID或者RAP服务是否正常"];
                 [alert runModal];
                 NSLog(@"失败");
-
             }];
         }
     }];
@@ -49,8 +52,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [classPrefix setStringValue:@"HWC"];
-    [project setStringValue:@"21739"];
+    [classPrefix setStringValue:@"EL"];
+    [project setStringValue:@"107"];
     [author setStringValue:@"邵存将"];
 }
 

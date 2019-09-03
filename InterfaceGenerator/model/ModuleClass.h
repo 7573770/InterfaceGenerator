@@ -12,8 +12,8 @@
 @interface ModuleClass : NSObject
 
 @property(nonatomic,assign)NSInteger id;
-@property(nonatomic,strong)NSString *introduction;
-@property(nonatomic,strong)NSString *name;
-@property(nonatomic,strong)NSMutableArray<PageClass *>  *pageList;
+@property(nonatomic,strong)NSString *introduction;//模块简介
+@property(nonatomic,strong)NSString *name;//模块名称
+@property(nonatomic,strong)NSMutableArray<PageClass *>  *pageList;//当前模块对应的页面列表
 
 @end

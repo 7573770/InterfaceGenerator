@@ -9,10 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "ModuleClass.h"
 
-@interface GeneratorClassService : NSObject
-
-
-
+@interface IOSGeneratorClassService : NSObject
 
 /**
  生成DAO接口
@@ -23,7 +20,7 @@
  @param author         类编写者
   @param projectID     项目ID
  */
-+(void)generatorDao:(NSArray<ModuleClass *>*)modelClassList classPrefix:(NSString *)classPrefix baseUrl:(NSString *)baseUrl author:(NSString *)author projectID:(NSString *)projectID;
++ (void)generatorDao:(NSArray<ModuleClass *>*)modelClassList classPrefix:(NSString *)classPrefix baseUrl:(NSString *)baseUrl author:(NSString *)author projectID:(NSString *)projectID;
 
 
 /**
@@ -32,7 +29,7 @@
  @param modelClassList modelClassList description
  @param classPrefix    classPrefix description
  */
-+(void)generatorModel:(NSArray<ModuleClass *>*)modelClassList classPrefix:(NSString *)classPrefix baseUrl:(NSString *)baseUrl author:(NSString *)author;
++ (void)generatorModel:(NSArray<ModuleClass *>*)modelClassList classPrefix:(NSString *)classPrefix baseUrl:(NSString *)baseUrl author:(NSString *)author;
 
 
 /**
@@ -41,6 +38,6 @@
  @param modelClassList modelClassList description
  @param classPrefix    classPrefix description
  */
-+(void)generatorDaoService:(NSArray<ModuleClass *>*)modelClassList classPrefix:(NSString *)classPrefix baseUrl:(NSString *)baseUrl author:(NSString *)author;
++ (void)generatorDaoService:(NSArray<ModuleClass *>*)modelClassList classPrefix:(NSString *)classPrefix baseUrl:(NSString *)baseUrl author:(NSString *)author;
 
 @end

@@ -9,16 +9,15 @@
 
 
 
-#import "GeneratorClassService.h"
+#import "IOSGeneratorClassService.h"
 #import <AddressBook/AddressBook.h>
 #import "TransapiDao.h"
 
-@implementation GeneratorClassService
+@implementation IOSGeneratorClassService
 
 
 +(void)generatorDao:(NSArray<ModuleClass *>*)modelClassList classPrefix:(NSString *)classPrefix baseUrl:(NSString *)baseUrl author:(NSString *)author projectID:(NSString *)projectID{
     
-//    NSString *baseUrl=@"/Users/linshuicai/Documents/";
     NSBundle *mainBundle = [NSBundle mainBundle];
     NSString *daoInterfaceTemplateFile = [mainBundle pathForResource:@"DaoInterfaceTemplate" ofType:@"txt"];
     NSString *daoInterfaceTemplate = [[NSString alloc] initWithContentsOfFile:daoInterfaceTemplateFile
@@ -53,7 +52,7 @@
                 NSMutableArray<ParameterClass *> *requestParameterList=actionClass.requestParameterList;
                 NSString *resourceURI=[requestUrl copy];
                 NSString *baseMockURL=[requestUrl copy];
-                NSString *mockURL=@"@\"http://rapapi.org/mockjsdata/{projectID}";
+                NSString *mockURL=@"@\"https://rap.chinamcloud.com/workspace/myWorkspace.do/{projectID}";
                 mockURL=[mockURL stringByReplacingOccurrencesOfString:@"{projectID}" withString:projectID];
                 for (NSString *string in requestUrl.pathComponents) {
                     if ([string containsString:@"${"]&&[string containsString:@"}"]) {
@@ -134,10 +133,10 @@
         [[NSFileManager defaultManager] createDirectoryAtPath:folder withIntermediateDirectories:YES attributes:nil error:nil];
         
         NSMutableArray<PageClass *>  *pageList=moduleClass.pageList;
-        
-        
+        //从页面中读取方法
         for (PageClass *pageClass in pageList) {
             NSMutableArray<ActionClass *>  *actionList= pageClass.actionList;
+            //解析方类 生成对应的model文件 model的类型取方法类里面的别名作为类名
             for (ActionClass *actionClass in actionList) {
                 NSString *requestUrl=actionClass.requestUrl;
                 NSString *_description=actionClass._description;
@@ -337,7 +336,7 @@
 }
 
 
-//循环遍历Parameter生成model
+//递归遍历Parameter生成model
 +(void)recursionParameterList:(NSString *)modelInterfaceTemplate modelImplementationTemplate:(NSString *)modelImplementationTemplate nsValueTransformerTemplate:(NSString *)nsValueTransformerTemplate parameterClassList:(NSMutableArray<ParameterClass *>  *)responseParameterList classPrefix:(NSString *)classPrefix folder:(NSString *)folder className:(NSString *)className author:(NSString *)author{
     NSString *importString=[NSString stringWithFormat:@"#import \"%@.h\"\n",className];
     NSString *propertyString=@"";

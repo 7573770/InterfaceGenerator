@@ -14,7 +14,7 @@
 /**
  使用百度翻译
  将模块名称翻译为英文
- @param moduleName moduleName
+ @param moduleName 模块名称
  @param success    英文名称
  @param failure    failure description
  */
